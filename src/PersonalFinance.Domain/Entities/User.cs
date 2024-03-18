@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using PersonalFinance.Domain.Entities.Common;
+using PersonalFinance.Domain.Enums;
+using PersonalFinance.Domain.Exception;
 
 namespace PersonalFinance.Domain.Entities;
 
@@ -32,8 +34,11 @@ public class User : AuditableBaseEntity<long>
 
     public User() { }
 
-    public User(string username , string email , string password , string userRoleId)
+    public User(string username , string email , string password , long userRoleId)
     {
+        ValidationUsername(username);
+        ValidationPassword(password);
+        ValidationEmail(email);
         this.Username = username;
         this.Email = email;
         this.Password = password;
@@ -65,9 +70,46 @@ public class User : AuditableBaseEntity<long>
 
     private void ValidationUsername(string userName)
     {
-        if (string.IsNullOrEmpty(userName))
+        if (string.IsNullOrWhiteSpace(userName))
+            throw new BusinessException("UserName notug'ri kiritildi ", nameof(userName), ErroEnum.ResourceInvalidField);
+        if (userName.Length < 3 || userName.Length > 20)
+            throw new BusinessException("UserName uzunligi 3 va 20 ta belgidan iborrat bulsin ", nameof(userName),
+                ErroEnum.ResourceInvalidField);
+    }
+
+    private void ValidationEmail(string email)
+    {
+        if (string.IsNullOrWhiteSpace(email))
+            throw new BusinessException("Email notug'ri kiritildi ", nameof(email), ErroEnum.ResourceInvalidField);
+        if (email.Length < 3 || email.Length > 50)
+            throw new BusinessException("Email notug'ri kiritildi ", nameof(email), ErroEnum.ResourceInvalidField);
+    }
+
+    public void ValidationPassword(string password)
+    {
+        if (string.IsNullOrWhiteSpace(password))
+            throw new BusinessException("Password notug'ri kiritildi", nameof(password), ErroEnum.ResourceInvalidField);
+        if (password.Length < 8 || password.Length > 100)
+            throw new BusinessException("O Parol 8 va 100 ta belgidan iborat", nameof(password),
+                ErroEnum.ResourceInvalidField);
+        if (!password.Any(char.IsNumber))
+            throw new BusinessException("Parolda kamida bitta raqam bulish kerak", nameof(password),
+                ErroEnum.ResourceInvalidField);
+        if (!password.Any(char.IsLetter))
+            throw new BusinessException("Parolda kamida bitta belgi bulish kerak", nameof(password),
+                ErroEnum.ResourceInvalidField);
+        if (!password.Any(char.IsLower))
+            throw new BusinessException("Parolda kamida bitta harf bulish kerak", nameof(password),
+                ErroEnum.ResourceInvalidField);
+        if (!password.Any(char.IsUpper))
+            throw new BusinessException("Parolda kamida bitta harf bulish kerak", nameof(password),
+                ErroEnum.ResourceInvalidField);
+
+        foreach (var value in password)
         {
+            if (password.Where(x => x == value).Count() >= 3)
+                throw new BusinessException("Parolni kiritish 3 ta vaqtdan keyin takrorlanadi", nameof(password),
+                    ErroEnum.ResourceInvalidField);
         }
-        // throw new Busi
     }
 }
