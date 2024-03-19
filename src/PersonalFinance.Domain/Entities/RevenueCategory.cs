@@ -1,6 +1,8 @@
-﻿namespace PersonalFinance.Domain.Entities;
+﻿using PersonalFinance.Domain.Entities.Common;
 
-public class RevenueCategory
+namespace PersonalFinance.Domain.Entities;
+
+public class RevenueCategory : AuditableBaseEntity<long>
 {
     
 }

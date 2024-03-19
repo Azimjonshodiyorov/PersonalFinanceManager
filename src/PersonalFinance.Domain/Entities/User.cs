@@ -6,7 +6,6 @@ using PersonalFinance.Domain.Exception;
 
 namespace PersonalFinance.Domain.Entities;
 
-[Table("user")]
 public class User : AuditableBaseEntity<long>
 {
     public string Username { get; private set; }
