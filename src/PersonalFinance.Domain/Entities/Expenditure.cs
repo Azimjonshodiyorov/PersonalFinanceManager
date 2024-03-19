@@ -16,14 +16,14 @@ public class Expenditure : AuditableBaseEntity<long>
 
         public virtual User User { get; private set; }
 
-        public int ExpenditureCategoryId { get; private set; }
+        public long ExpenditureCategoryId { get; private set; }
 
         public virtual ExpenditureCategory ExpenditureCategory { get; private set; }
 
 
         protected Expenditure() { }
 
-        public Expenditure(string name, int expenditureCategoryId, DateTime? date, decimal value, string description, int userId) 
+        public Expenditure(string name, long expenditureCategoryId, DateTime? date, decimal value, string description, long userId) 
         {
             ValidationName(name);
             ValidationValue(value);
@@ -36,7 +36,7 @@ public class Expenditure : AuditableBaseEntity<long>
             UserId = userId;
         }
 
-        public void Update(string name, int expenditureCategoryId, DateTime date, decimal value, string description) 
+        public void Update(string name, long expenditureCategoryId, DateTime date, decimal value, string description) 
         {
             ValidationName(name);
             ValidationValue(value);
