@@ -20,5 +20,5 @@ public class CreateExpenditureRequest
     [MaxLength(60)]
     public string Description { get; set; }
 
-    public int ExpenditureCategoryId { get; set; }
+    public long ExpenditureCategoryId { get; set; }
 }

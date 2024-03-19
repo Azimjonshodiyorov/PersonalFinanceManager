@@ -21,5 +21,5 @@ public class CreateRevenueRequest
     public string Description { get; set; }
 
     [Required(ErrorMessage ="The Revenue's Category is Required")]
-    public int RevenueCategoryId { get; set; }
+    public long RevenueCategoryId { get; set; }
 }
