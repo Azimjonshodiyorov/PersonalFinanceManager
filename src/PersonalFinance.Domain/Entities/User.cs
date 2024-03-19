@@ -70,7 +70,7 @@ public class User : AuditableBaseEntity<long>
     private void ValidationUsername(string userName)
     {
         if (string.IsNullOrWhiteSpace(userName))
-            throw new BusinessException("UserName notug'ri kiritildi ", nameof(userName), ErroEnum.ResourceInvalidField);
+            throw new BusinessException("UserName notug'ri kiritildi ", nameof(Username), ErroEnum.ResourceInvalidField);
         if (userName.Length < 3 || userName.Length > 20)
             throw new BusinessException("UserName uzunligi 3 va 20 ta belgidan iborrat bulsin ", nameof(userName),
                 ErroEnum.ResourceInvalidField);
@@ -79,35 +79,35 @@ public class User : AuditableBaseEntity<long>
     private void ValidationEmail(string email)
     {
         if (string.IsNullOrWhiteSpace(email))
-            throw new BusinessException("Email notug'ri kiritildi ", nameof(email), ErroEnum.ResourceInvalidField);
+            throw new BusinessException("Email notug'ri kiritildi ", nameof(Email), ErroEnum.ResourceInvalidField);
         if (email.Length < 3 || email.Length > 50)
-            throw new BusinessException("Email notug'ri kiritildi ", nameof(email), ErroEnum.ResourceInvalidField);
+            throw new BusinessException("Email notug'ri kiritildi ", nameof(Email), ErroEnum.ResourceInvalidField);
     }
 
     public void ValidationPassword(string password)
     {
         if (string.IsNullOrWhiteSpace(password))
-            throw new BusinessException("Password notug'ri kiritildi", nameof(password), ErroEnum.ResourceInvalidField);
+            throw new BusinessException("Password notug'ri kiritildi", nameof(Password), ErroEnum.ResourceInvalidField);
         if (password.Length < 8 || password.Length > 100)
-            throw new BusinessException("O Parol 8 va 100 ta belgidan iborat", nameof(password),
+            throw new BusinessException("O Parol 8 va 100 ta belgidan iborat", nameof(Password),
                 ErroEnum.ResourceInvalidField);
         if (!password.Any(char.IsNumber))
-            throw new BusinessException("Parolda kamida bitta raqam bulish kerak", nameof(password),
+            throw new BusinessException("Parolda kamida bitta raqam bulish kerak", nameof(Password),
                 ErroEnum.ResourceInvalidField);
         if (!password.Any(char.IsLetter))
-            throw new BusinessException("Parolda kamida bitta belgi bulish kerak", nameof(password),
+            throw new BusinessException("Parolda kamida bitta belgi bulish kerak", nameof(Password),
                 ErroEnum.ResourceInvalidField);
         if (!password.Any(char.IsLower))
-            throw new BusinessException("Parolda kamida bitta harf bulish kerak", nameof(password),
+            throw new BusinessException("Parolda kamida bitta harf bulish kerak", nameof(Password),
                 ErroEnum.ResourceInvalidField);
         if (!password.Any(char.IsUpper))
-            throw new BusinessException("Parolda kamida bitta harf bulish kerak", nameof(password),
+            throw new BusinessException("Parolda kamida bitta harf bulish kerak", nameof(Password),
                 ErroEnum.ResourceInvalidField);
 
         foreach (var value in password)
         {
             if (password.Where(x => x == value).Count() >= 3)
-                throw new BusinessException("Parolni kiritish 3 ta vaqtdan keyin takrorlanadi", nameof(password),
+                throw new BusinessException("Parolni kiritish 3 ta vaqtdan keyin takrorlanadi", nameof(Password),
                     ErroEnum.ResourceInvalidField);
         }
     }

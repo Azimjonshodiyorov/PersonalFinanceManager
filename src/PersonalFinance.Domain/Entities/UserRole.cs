@@ -33,16 +33,16 @@ public class UserRole : AuditableBaseEntity<long>
     public void ValidationName(string name)
     {
         if (string.IsNullOrWhiteSpace(name))
-            throw new BusinessException("Name is invalid", nameof(name), ErroEnum.ResourceInvalidField);
+            throw new BusinessException("Name is invalid", nameof(Name), ErroEnum.ResourceInvalidField);
         if (name.Length < 3 || name.Length > 30)
-            throw new BusinessException("Name Invalid", nameof(name), ErroEnum.ResourceInvalidField);
+            throw new BusinessException("Name Invalid", nameof(Name), ErroEnum.ResourceInvalidField);
     }
 
     public void ValidationDescription(string description)
     {
         if (string.IsNullOrWhiteSpace(description))
-            throw new BusinessException("Decsription is Invalid", nameof(description), ErroEnum.ResourceInvalidField);
+            throw new BusinessException("Decsription is Invalid", nameof(Description), ErroEnum.ResourceInvalidField);
         if(description.Length < 5 || description.Length > 100)
-            throw new BusinessException("Decsription is Invalid", nameof(description), ErroEnum.ResourceInvalidField);
+            throw new BusinessException("Decsription is Invalid", nameof(Description), ErroEnum.ResourceInvalidField);
     }
 }
