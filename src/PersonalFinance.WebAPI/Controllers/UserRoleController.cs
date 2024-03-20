@@ -53,7 +53,7 @@ public class UserRoleController : ControllerBase
 
     [HttpPost]
     [Route("AddUserRole")]
-    public async Task<ActionResult> Create(CreateUserRoleRequest userRoleRequest)
+    public async Task<ActionResult<UserRoleResponse>> Create(CreateUserRoleRequest userRoleRequest)
     {
         if (userRoleRequest is null)
             throw new ArgumentNullException(nameof(userRoleRequest));
@@ -72,7 +72,7 @@ public class UserRoleController : ControllerBase
 
     [HttpPut]
     [Route("UserRoleUpdate{id:long}")]
-    public async Task<ActionResult> Update(UpdateUserRoleRequest userRoleRequest, long id)
+    public async Task<ActionResult<UserRoleResponse>> Update(UpdateUserRoleRequest userRoleRequest, long id)
     {
         if (userRoleRequest is null)
             throw new ArgumentNullException(nameof(UpdateUserRoleRequest));
@@ -92,7 +92,7 @@ public class UserRoleController : ControllerBase
 
     [HttpDelete]
     [Route("{id:long}")]
-    public async Task<ActionResult> Delete(long id)
+    public async Task<ActionResult<UserRoleResponse>> Delete(long id)
     {
         var userRole = await this._roleService.Delete(id);
         return Ok(
