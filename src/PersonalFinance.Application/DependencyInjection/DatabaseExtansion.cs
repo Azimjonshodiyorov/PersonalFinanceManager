@@ -7,7 +7,7 @@ namespace PersonalFinance.Application.DependencyInjection;
 
 public static class DatabaseExtansion
 {
-    public static IServiceCollection AddAbConfiguration(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDbConfiguration(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<AppDbContext>(options =>
             options.UseLazyLoadingProxies().UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
