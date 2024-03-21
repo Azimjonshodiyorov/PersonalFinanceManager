@@ -1,0 +1,6 @@
+﻿services:
+  personalfinance.webapi:
+    image: personalfinance.webapi
+    build:
+      context: .
+      dockerfile: src/PersonalFinance.WebAPI/Dockerfile
