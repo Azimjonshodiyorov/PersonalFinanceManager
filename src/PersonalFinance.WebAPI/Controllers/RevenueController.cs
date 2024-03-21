@@ -27,7 +27,7 @@ public class RevenueController : ControllerBase
     [Route("{id:long}")]
     public async Task<ActionResult<RevenueResponse>> GetById(long id)
     {
-        var userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+        var userId = long.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
         var revenueResponse = await this._revenueService.GetByIdAndUserId(id, userId);
         if (revenueResponse is null)
             return NotFound();
@@ -43,7 +43,7 @@ public class RevenueController : ControllerBase
     [Route("User")]
     public async Task<ActionResult<RevenueResponse>> Get()
     {
-        var userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+        var userId = long.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
         var userResponse = await this._revenueService.GetByUserId(userId);
 
         if (userResponse is null)
@@ -65,7 +65,7 @@ public class RevenueController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(new BusinessException("Invalid Requst", nameof(CreateUserRoleRequest),
                 ErroEnum.ResourceBadRequest));
-        var userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+        var userId = long.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
         var revenueResponse = await this._revenueService.Create(revenueRequest, userId);
         return Ok(
             new Response
@@ -84,7 +84,7 @@ public class RevenueController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(new BusinessException("Invalid Requst", nameof(UpdateRevenueRequest),
                 ErroEnum.ResourceBadRequest));
-        var userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+        var userId = long.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
         var revenueResponse = await this._revenueService.Update(revenueRequest, id, userId);
 
         return Ok(
@@ -99,7 +99,7 @@ public class RevenueController : ControllerBase
     [Route("{id:long}")]
     public async Task<ActionResult<RevenueResponse>> Delete(long id)
     {
-        var userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+        var userId = long.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
         var revenueResponse = await this._revenueService.Delete(id, userId);
 
         return Ok(

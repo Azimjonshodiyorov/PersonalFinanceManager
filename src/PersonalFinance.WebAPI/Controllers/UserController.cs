@@ -54,7 +54,7 @@ public class UserController : ControllerBase
     [Route("Me")]
     public async Task<ActionResult<UserResponse>> GetMyUser()
     {
-        var userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+        var userId = long.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
         var userResponse = await this._userService.GetById(userId);
         if (userResponse is null)
             return NotFound();

@@ -4,3 +4,5 @@
     build:
       context: .
       dockerfile: src/PersonalFinance.WebAPI/Dockerfile
+  
+  

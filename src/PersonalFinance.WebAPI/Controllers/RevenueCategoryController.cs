@@ -25,7 +25,7 @@ public class RevenueCategoryController : ControllerBase
     [Route("{id:long}")]
     public async Task<ActionResult<RevenueCategoryResponse>> GetById(long id)
     {
-        var userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+        var userId = long.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
         var revenueCategoryResponse = await this._categoryService.GetByIdAndUserId(id, userId);
         if (revenueCategoryResponse is null)
             return NotFound();
@@ -42,7 +42,7 @@ public class RevenueCategoryController : ControllerBase
     [Route("get")]
     public async Task<ActionResult<RevenueCategoryResponse>> Get()
     {
-        var userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+        var userId = long.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
         var revenueCategoryResponse = await this._categoryService.GetByUserId(userId);
         if (revenueCategoryResponse is null)
             return NotFound();
@@ -64,7 +64,7 @@ public class RevenueCategoryController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(new BusinessException("Invalid Requst", nameof(CreateRevenueCategoryRequest),
                 ErroEnum.ResourceBadRequest));
-        var userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+        var userId = long.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
         var revenueCategoryResponse = await this._categoryService.Create(revenueCategoryRequest, userId);
         return Ok(
             new Response
@@ -84,7 +84,7 @@ public class RevenueCategoryController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(new BusinessException("Invalid Request", nameof(revenueCategoryRequest),
                 ErroEnum.ResourceBadRequest));
-        var userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+        var userId = long.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
         var revenueCategoryResponse = await this._categoryService.Update(revenueCategoryRequest, id, userId);
 
         return Ok(
@@ -99,7 +99,7 @@ public class RevenueCategoryController : ControllerBase
     [Route("{id:long}")]
     public async Task<ActionResult<RevenueCategoryResponse>> Delete(long id)
     {
-        var userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+        var userId = long.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
         var revenueCategoryResponse = await this._categoryService.Delete(id, userId);
 
         return Ok(
