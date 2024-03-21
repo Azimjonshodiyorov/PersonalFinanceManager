@@ -1,2 +1,2 @@
-Personal Finance Manager project
+# Personal Finance Manager project
 
