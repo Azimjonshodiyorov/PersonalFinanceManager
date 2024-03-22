@@ -20,5 +20,6 @@ public class RevenueCategoryConfiguration : IEntityTypeConfiguration<RevenueCate
             HasForeignKey(r => r.UserId);
         
         builder.Property(r => r.UserId).IsRequired();
+
     }
 }

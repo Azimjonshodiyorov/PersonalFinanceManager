@@ -20,5 +20,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasForeignKey(x => x.UserRoleId);
         builder.Property(x => x.UserRoleId).IsRequired();
         builder.Property(x => x.IsEmailValid).IsRequired();
+
     }
 }

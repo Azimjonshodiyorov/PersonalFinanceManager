@@ -28,5 +28,7 @@ public class ExpenditureConfiguration : IEntityTypeConfiguration<Expenditure>
             .WithMany(e => e.Expenditures)
             .HasForeignKey(e => e.ExpenditureCategoryId);
         builder.Property(e => e.ExpenditureCategoryId).IsRequired();
+
+
     }
 }

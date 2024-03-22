@@ -25,8 +25,7 @@ public class AuthenticationService : IAuthenticationService
         var user = await this._userRepository.GetByEmailAsync(request.Email);
         if (user is null)
             throw new BusinessException("Invalid email");
-        if (!user.IsValidLoginPassword(request.Password))
-            throw new BusinessException("Invalid password");
+        
         var token = this._tokenService.GenerateToken(user);
         if (token is null)
             throw new BusinessException("Invalid Token");

@@ -24,6 +24,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog();
 builder.Services.AddCors();
 builder.Services.AddControllers();
+builder.Services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+    );
 
 var key = Encoding.ASCII.GetBytes(builder.Configuration.GetSection("PersonalFinancesSecurityKey").Value);
 builder.Services.AddAuthentication(x =>

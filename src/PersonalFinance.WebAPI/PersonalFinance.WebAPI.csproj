@@ -9,6 +9,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
           <PrivateAssets>all</PrivateAssets>
@@ -26,6 +27,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\PersonalFinance.Application\PersonalFinance.Application.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Logs\PersonalFinances20240320.json" />
+      <_ContentIncludedByDefault Remove="Logs\PersonalFinances20240321.json" />
     </ItemGroup>
 
 </Project>

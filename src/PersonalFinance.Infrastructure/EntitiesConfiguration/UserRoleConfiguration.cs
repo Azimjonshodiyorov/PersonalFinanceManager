@@ -14,5 +14,7 @@ public class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
         builder.Property(u => u.Name).IsRequired().HasMaxLength(30);
 
         builder.Property(u => u.Description).IsRequired().HasMaxLength(100);
+
+        //builder.HasData(new UserRole("Admin", "SuportAdmin"));
     }
 }

@@ -9,7 +9,6 @@ using PersonalFinance.Domain.Exception;
 
 namespace PersonalFinance.WebAPI.Controllers;
 
-[Authorize(Roles = "Admin")]
 [ApiController]
 [Route("api/[controller]")]
 public class UserRoleController : ControllerBase

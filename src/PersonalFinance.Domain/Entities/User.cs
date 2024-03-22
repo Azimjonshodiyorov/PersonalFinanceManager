@@ -42,7 +42,7 @@ public class User : AuditableBaseEntity<long>
         this.Email = email;
         this.Password = password;
         IsEmailValid = false;
-        userRoleId = userRoleId;
+        this.UserRoleId = userRoleId;
         CreateAt = DateTime.UtcNow;
     }
 
@@ -89,7 +89,7 @@ public class User : AuditableBaseEntity<long>
         if (string.IsNullOrWhiteSpace(password))
             throw new BusinessException("Password notug'ri kiritildi", nameof(Password), ErroEnum.ResourceInvalidField);
         if (password.Length < 8 || password.Length > 100)
-            throw new BusinessException("O Parol 8 va 100 ta belgidan iborat", nameof(Password),
+            throw new BusinessException("Parol 8 va 100 ta belgidan iborat", nameof(Password),
                 ErroEnum.ResourceInvalidField);
         if (!password.Any(char.IsNumber))
             throw new BusinessException("Parolda kamida bitta raqam bulish kerak", nameof(Password),
@@ -107,7 +107,7 @@ public class User : AuditableBaseEntity<long>
         foreach (var value in password)
         {
             if (password.Where(x => x == value).Count() >= 3)
-                throw new BusinessException("Parolni kiritish 3 ta vaqtdan keyin takrorlanadi", nameof(Password),
+                throw new BusinessException("Parolni kiritishda 3 ta belgi bir xil bulmasin", nameof(Password),
                     ErroEnum.ResourceInvalidField);
         }
     }
